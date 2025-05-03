@@ -1,7 +1,7 @@
 # IDE Folders and Files
 .idea
 .DS_Store
-
+.env
 
 
 microservices

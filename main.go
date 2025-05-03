@@ -2,17 +2,37 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	_ "github.com/gbrayhan/microservices-go/docs"
 	"github.com/gbrayhan/microservices-go/src/infrastructure/repository"
 	"github.com/gbrayhan/microservices-go/src/infrastructure/rest/middlewares"
 	"github.com/gbrayhan/microservices-go/src/infrastructure/rest/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"os"
-	"strings"
-	"time"
 )
 
+// @title           Swagger Example API
+// @version         1.0
+// @description     This is a sample server celler server.
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      localhost:6767
+
+// @securityDefinitions.basic  BasicAuth
+
+// @externalDocs.description  OpenAPI
+// @externalDocs.url          https://swagger.io/resources/open-api/
 func main() {
 	router := gin.Default()
 	router.Use(cors.Default())

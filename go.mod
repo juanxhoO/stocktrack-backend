@@ -20,6 +20,8 @@ require (
 	gorm.io/plugin/dbresolver v1.5.0
 )
 
+require github.com/gofrs/uuid v4.2.0+incompatible // indirect
+
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
 	github.com/bytedance/sonic v1.11.2 // indirect
@@ -55,6 +57,7 @@ require (
 	github.com/spf13/cast v1.6.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
+	github.com/swaggo/swag/example/celler v0.0.0-20250321074624-93e86851e9f2
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
 	go.uber.org/multierr v1.11.0 // indirect

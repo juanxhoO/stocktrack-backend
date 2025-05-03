@@ -1,6 +1,7 @@
 package routes
 
 import (
+	_ "github.com/gbrayhan/microservices-go/docs"
 	"github.com/gbrayhan/microservices-go/src/infrastructure/rest/adapter"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
