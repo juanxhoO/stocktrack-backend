@@ -1,0 +1,14 @@
+[build]
+  bin = "./tmp/main"
+  cmd = "swag init && go build -o ./tmp/main ."  # Auto-generate Swagger docs before build
+  delay = 1000
+  exclude_dir = ["vendor", "tmp", "docs"]
+  include_ext = ["go", "yaml", "yml"]
+  kill_delay = "500ms"
+  log = "build-errors.log"
+  send_interrupt = true
+  stop_on_error = true
+
+[color]
+  main = "magenta"
+  watcher = "cyan"

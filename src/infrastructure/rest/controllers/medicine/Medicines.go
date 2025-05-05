@@ -99,6 +99,14 @@ func (c *Controller) GetDataMedicines(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, resp)
 }
 
+// ShowAccount godoc
+// @Summary      Show an account
+// @Description  get string by ID
+// @Tags         accounts
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Account ID"
+// @Router       /accounts/{id} [get]
 func (c *Controller) GetMedicinesByID(ctx *gin.Context) {
 	medicineID, err := strconv.Atoi(ctx.Param("id"))
 	if err != nil {

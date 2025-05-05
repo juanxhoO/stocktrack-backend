@@ -13,11 +13,11 @@ import (
 )
 
 func InitDB() (*gorm.DB, error) {
-	dbHost := getEnv("DB_HOST", "localhost")
+	dbHost := getEnv("DB_HOST", "172.20.0.2")
 	dbPort := getEnv("DB_PORT", "3306")
 	dbUser := getEnv("DB_USER", "root")
-	dbPass := getEnv("DB_PASS", "")
-	dbName := getEnv("DB_NAME", "boilerplatego")
+	dbPass := getEnv("DB_PASS", "youShouldChangeThisPassword")
+	dbName := getEnv("DB_NAME", "boilerplate_go")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		dbUser, dbPass, dbHost, dbPort, dbName)

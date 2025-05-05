@@ -1,29 +1,28 @@
-version: '3'
 services:
-  go-microservice:
-    build: .
-    image: go-microservice
-    # these are the environment variables that will be passed to the container at runtime and will be used in the application
-    environment:
-      - DB_HOST=mysqldb
-      - DB_NAME=boilerplate_go
-      - DB_PASS=youShouldChangeThisPassword
-      - DB_PORT=3306
-      - DB_USER=appuser
-      - JWT_ACCESS_SECRET=accesskeyyoumayneedtochangeit
-      - JWT_ACCESS_TIME_MINUTE=10
-      - JWT_REFRESH_SECRET=refreshkeyyoumayneedtochangeit
-      - JWT_REFRESH_TIME_HOUR=10
-      - SERVER_PORT=8080
-    ports:
-      - '8080:8080'
-    restart: on-failure
-    depends_on:
-      - mysqldb
-    #volumes:
-    #  - .:/srv/go-app
-    networks:
-      - go-network
+  # go-microservice:
+  #   build: .
+  #   image: go-microservice
+  #   # these are the environment variables that will be passed to the container at runtime and will be used in the application
+  #   environment:
+  #     - DB_HOST=mysqldb
+  #     - DB_NAME=boilerplate_go
+  #     - DB_PASS=youShouldChangeThisPassword
+  #     - DB_PORT=3306
+  #     - DB_USER=appuser
+  #     - JWT_ACCESS_SECRET=accesskeyyoumayneedtochangeit
+  #     - JWT_ACCESS_TIME_MINUTE=10
+  #     - JWT_REFRESH_SECRET=refreshkeyyoumayneedtochangeit
+  #     - JWT_REFRESH_TIME_HOUR=10
+  #     - SERVER_PORT=8080
+  #   ports:
+  #     - '8080:8080'
+  #   restart: on-failure
+  #   depends_on:
+  #     - mysqldb
+  #   #volumes:
+  #   #  - .:/srv/go-app
+  #   networks:
+  #     - go-network
   mysqldb:
     platform: linux/x86_64
     image: mysql:8.0
