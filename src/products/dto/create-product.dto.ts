@@ -17,11 +17,11 @@ export class CreateProductDto {
   @IsNotEmpty()
   name: string | null;
 
-  @ApiProperty({ example: 'John', type: String })
+  @ApiProperty({ example: 100, type: Number })
   @IsNotEmpty()
   price: number;
 
-  @ApiPropertyOptional({ example: 'John', type: String })
+  @ApiPropertyOptional({ example: 'product-description', type: String })
   @IsOptional()
   description: string | null;
 

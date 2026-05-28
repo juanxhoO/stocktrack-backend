@@ -14,20 +14,15 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
 
   @ApiPropertyOptional()
   @IsOptional()
-  @MinLength(6)
-  password?: string;
-
-  provider?: string;
-
-  socialId?: string | null;
+  description?: string | null;
 
   @ApiPropertyOptional({ example: 'John', type: String })
   @IsOptional()
-  firstName?: string | null;
+  name?: string | null;
 
   @ApiPropertyOptional({ example: 'Doe', type: String })
   @IsOptional()
-  lastName?: string | null;
+  price?: number;
 
   @ApiPropertyOptional({ type: () => FileDto })
   @IsOptional()
