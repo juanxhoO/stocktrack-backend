@@ -1,7 +1,6 @@
 import {
   // decorators here
   Transform,
-  Type,
 } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
@@ -10,18 +9,17 @@ import {
   IsOptional,
 } from 'class-validator';
 import { FileDto } from '../../files/dto/file.dto';
-import { StatusDto } from '../../statuses/dto/status.dto';
 import { lowerCaseTransformer } from '../../utils/transformers/lower-case.transformer';
 
-export class CreateCategoryDto {
-  @ApiProperty({ example: 'category-slug', type: String })
+export class CreateProductDto {
+  @ApiProperty({ example: 'product-name', type: String })
   @Transform(lowerCaseTransformer)
   @IsNotEmpty()
-  slug: string | null;
+  name: string | null;
 
   @ApiProperty({ example: 'John', type: String })
   @IsNotEmpty()
-  name: string | null;
+  price: number;
 
   @ApiPropertyOptional({ example: 'John', type: String })
   @IsOptional()
@@ -30,9 +28,4 @@ export class CreateCategoryDto {
   @ApiPropertyOptional({ type: () => FileDto })
   @IsOptional()
   photo?: FileDto | null;
-
-  @ApiPropertyOptional({ type: StatusDto })
-  @IsOptional()
-  @Type(() => StatusDto)
-  status?: StatusDto;
 }

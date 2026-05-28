@@ -14,4 +14,4 @@ import { CategoryEntity } from './entities/category.entity';
   ],
   exports: [CategoryRepository],
 })
-export class RelationalCategoryPersistenceModule { }
+export class RelationalCategoryPersistenceModule {}

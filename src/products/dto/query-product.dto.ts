@@ -6,27 +6,27 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Transform, Type, plainToInstance } from 'class-transformer';
-import { Category } from '../domain/category';
+import { Product } from '../domain/product';
 
-export class FilterCategoryDto {
+export class FilterProductDto {
   @ApiPropertyOptional({ type: String })
   @IsString()
   @IsOptional()
   name?: string | null;
 }
 
-export class SortCategoryDto {
+export class SortProductDto {
   @ApiProperty()
   @Type(() => String)
   @IsString()
-  orderBy: keyof Category;
+  orderBy: keyof Product;
 
   @ApiProperty()
   @IsString()
   order: string;
 }
 
-export class QueryCategoryDto {
+export class QueryProductDto {
   @ApiPropertyOptional()
   @Transform(({ value }) => (value ? Number(value) : 1))
   @IsNumber()
@@ -42,20 +42,20 @@ export class QueryCategoryDto {
   @ApiPropertyOptional({ type: String })
   @IsOptional()
   @Transform(({ value }) =>
-    value ? plainToInstance(FilterCategoryDto, JSON.parse(value)) : undefined,
+    value ? plainToInstance(FilterProductDto, JSON.parse(value)) : undefined,
   )
   @ValidateNested()
-  @Type(() => FilterCategoryDto)
-  filters?: FilterCategoryDto | null;
+  @Type(() => FilterProductDto)
+  filters?: FilterProductDto | null;
 
   @ApiPropertyOptional({ type: String })
   @IsOptional()
   @Transform(({ value }) => {
     return value
-      ? plainToInstance(SortCategoryDto, JSON.parse(value))
+      ? plainToInstance(SortProductDto, JSON.parse(value))
       : undefined;
   })
   @ValidateNested({ each: true })
-  @Type(() => SortCategoryDto)
-  sort?: SortCategoryDto[] | null;
+  @Type(() => SortProductDto)
+  sort?: SortProductDto[] | null;
 }

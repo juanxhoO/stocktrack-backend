@@ -4,7 +4,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptionsWhere, Repository, In } from 'typeorm';
 import { CategoryEntity } from '../entities/category.entity';
 import { NullableType } from '../../../../../utils/types/nullable.type';
-import { FilterCategoryDto, SortCategoryDto } from '../../../../dto/query-category.dto';
+import {
+  FilterCategoryDto,
+  SortCategoryDto,
+} from '../../../../dto/query-category.dto';
 import { Category } from '../../../../domain/category';
 import { CategoryRepository } from '../../category.repository';
 import { CategoryMapper } from '../mappers/category.mapper';
@@ -15,7 +18,7 @@ export class CategoriesRelationalRepository implements CategoryRepository {
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoriesRepository: Repository<CategoryEntity>,
-  ) { }
+  ) {}
 
   async create(data: Category): Promise<Category> {
     const persistenceModel = CategoryMapper.toPersistence(data);
@@ -81,8 +84,10 @@ export class CategoriesRelationalRepository implements CategoryRepository {
     return entity ? CategoryMapper.toDomain(entity) : null;
   }
 
-
-  async update(id: Category['id'], payload: Partial<Category>): Promise<Category> {
+  async update(
+    id: Category['id'],
+    payload: Partial<Category>,
+  ): Promise<Category> {
     const entity = await this.categoriesRepository.findOne({
       where: { id: Number(id) },
     });

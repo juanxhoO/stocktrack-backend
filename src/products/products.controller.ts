@@ -12,8 +12,8 @@ import {
   HttpCode,
   SerializeOptions,
 } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 import {
   ApiBearerAuth,
   ApiCreatedResponse,
@@ -30,9 +30,9 @@ import {
   InfinityPaginationResponseDto,
 } from '../utils/dto/infinity-pagination-response.dto';
 import { NullableType } from '../utils/types/nullable.type';
-import { QueryCategoryDto } from './dto/query-category.dto';
-import { Category } from './domain/category';
-import { CategoriesService } from './categories.service';
+import { QueryProductDto } from './dto/query-product.dto';
+import { Product } from './domain/product';
+import { ProductsService } from './products.service';
 import { RolesGuard } from '../roles/roles.guard';
 import { infinityPagination } from '../utils/infinity-pagination';
 
@@ -45,22 +45,22 @@ import { infinityPagination } from '../utils/infinity-pagination';
   version: '1',
 })
 export class CategoriesController {
-  constructor(private readonly categoriesService: CategoriesService) {}
+  constructor(private readonly productsService: ProductsService) {}
 
   @ApiCreatedResponse({
-    type: Category,
+    type: Product,
   })
   @SerializeOptions({
     groups: ['admin'],
   })
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createProfileDto: CreateCategoryDto): Promise<Category> {
-    return this.categoriesService.create(createProfileDto);
+  create(@Body() createProfileDto: CreateProductDto): Promise<Product> {
+    return this.productsService.create(createProfileDto);
   }
 
   @ApiOkResponse({
-    type: InfinityPaginationResponse(Category),
+    type: InfinityPaginationResponse(Product),
   })
   @SerializeOptions({
     groups: ['admin'],
@@ -68,8 +68,8 @@ export class CategoriesController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(
-    @Query() query: QueryCategoryDto,
-  ): Promise<InfinityPaginationResponseDto<Category>> {
+    @Query() query: QueryProductDto,
+  ): Promise<InfinityPaginationResponseDto<Product>> {
     const page = query?.page ?? 1;
     let limit = query?.limit ?? 10;
     if (limit > 50) {
@@ -77,7 +77,7 @@ export class CategoriesController {
     }
 
     return infinityPagination(
-      await this.categoriesService.findManyWithPagination({
+      await this.productsService.findManyWithPagination({
         filterOptions: query?.filters,
         sortOptions: query?.sort,
         paginationOptions: {
@@ -90,7 +90,7 @@ export class CategoriesController {
   }
 
   @ApiOkResponse({
-    type: Category,
+    type: Product,
   })
   @SerializeOptions({
     groups: ['admin'],
@@ -102,12 +102,12 @@ export class CategoriesController {
     type: String,
     required: true,
   })
-  findOne(@Param('id') id: Category['id']): Promise<NullableType<Category>> {
-    return this.categoriesService.findById(id);
+  findOne(@Param('id') id: Product['id']): Promise<NullableType<Product>> {
+    return this.productsService.findById(id);
   }
 
   @ApiOkResponse({
-    type: Category,
+    type: Product,
   })
   @SerializeOptions({
     groups: ['admin'],
@@ -120,10 +120,10 @@ export class CategoriesController {
     required: true,
   })
   update(
-    @Param('id') id: Category['id'],
-    @Body() updateProfileDto: UpdateCategoryDto,
-  ): Promise<Category | null> {
-    return this.categoriesService.update(id, updateProfileDto);
+    @Param('id') id: Product['id'],
+    @Body() updateProfileDto: UpdateProductDto,
+  ): Promise<Product | null> {
+    return this.productsService.update(id, updateProfileDto);
   }
 
   @Delete(':id')
@@ -133,7 +133,7 @@ export class CategoriesController {
     required: true,
   })
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: Category['id']): Promise<void> {
-    return this.categoriesService.remove(id);
+  remove(@Param('id') id: Product['id']): Promise<void> {
+    return this.productsService.remove(id);
   }
 }
