@@ -16,7 +16,7 @@ import { EntityRelationalHelper } from '../../../../../utils/relational-entity-h
 @Entity({
   name: 'category',
 })
-export class CategoryEntity extends EntityRelationalHelper {
+export class InventoryEntity extends EntityRelationalHelper {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -28,6 +28,12 @@ export class CategoryEntity extends EntityRelationalHelper {
 
   @Column({ type: String, nullable: true })
   description: string | null;
+
+  @Column({ type: Number, nullable: true })
+  productId: number | null;
+
+  @Column({ type: Number, nullable: true })
+  quantity: number | null;
 
   @OneToOne(() => FileEntity, {
     eager: true,

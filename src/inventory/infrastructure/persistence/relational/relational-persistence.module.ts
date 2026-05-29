@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
-import { CategoryRepository } from '../category.repository';
-import { CategoriesRelationalRepository } from './repositories/category.repository';
+import { InventoryRepository } from '../inventory.repository';
+import { InventoryRelationalRepository } from './repositories/inventory.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CategoryEntity } from './entities/category.entity';
+import { InventoryEntity } from './entities/inventory.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CategoryEntity])],
+  imports: [TypeOrmModule.forFeature([InventoryEntity])],
   providers: [
     {
-      provide: CategoryRepository,
-      useClass: CategoriesRelationalRepository,
+      provide: InventoryRepository,
+      useClass: InventoryRelationalRepository,
     },
   ],
-  exports: [CategoryRepository],
+  exports: [InventoryRepository],
 })
-export class RelationalCategoryPersistenceModule { }
+export class RelationalInventoryPersistenceModule {}

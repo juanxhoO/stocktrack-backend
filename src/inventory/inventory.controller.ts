@@ -10,7 +10,7 @@ import {
   HttpCode,
   SerializeOptions,
 } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-category.dto';
+import { CreateInventoryDto } from './dto/create-inventory.dto';
 import {
   ApiBearerAuth,
   ApiCreatedResponse,
@@ -27,7 +27,7 @@ import {
   InfinityPaginationResponseDto,
 } from '../utils/dto/infinity-pagination-response.dto';
 import { NullableType } from '../utils/types/nullable.type';
-import { QueryCategoryDto } from './dto/query-category.dto';
+import { QueryInventoryDto } from './dto/query-inventory.dto';
 import { Inventory } from './domain/inventory';
 import { InventoryService } from './inventory.service';
 import { RolesGuard } from '../roles/roles.guard';
@@ -42,7 +42,7 @@ import { infinityPagination } from '../utils/infinity-pagination';
   version: '1',
 })
 export class InventoryController {
-  constructor(private readonly inventoryService: InventoryService) { }
+  constructor(private readonly inventoryService: InventoryService) {}
 
   @ApiCreatedResponse({
     type: Inventory,
@@ -52,22 +52,9 @@ export class InventoryController {
   })
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createProfileDto: CreateCategoryDto): Promise<Inventory> {
-    return this.inventoryService.create(createProfileDto);
+  create(@Body() createInventoryDto: CreateInventoryDto): Promise<Inventory> {
+    return this.inventoryService.create(createInventoryDto);
   }
-
-  @ApiCreatedResponse({
-    type: Inventory,
-  })
-  @SerializeOptions({
-    groups: ['admin'],
-  })
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  create(@Body() createProfileDto: CreateCategoryDto): Promise<Inventory> {
-    return this.inventoryService.create(createProfileDto);
-  }
-
 
   @ApiOkResponse({
     type: InfinityPaginationResponse(Inventory),
@@ -78,7 +65,7 @@ export class InventoryController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(
-    @Query() query: QueryCategoryDto,
+    @Query() query: QueryInventoryDto,
   ): Promise<InfinityPaginationResponseDto<Inventory>> {
     const page = query?.page ?? 1;
     let limit = query?.limit ?? 10;
@@ -115,5 +102,4 @@ export class InventoryController {
   findOne(@Param('id') id: Inventory['id']): Promise<NullableType<Inventory>> {
     return this.inventoryService.findById(id);
   }
-
 }

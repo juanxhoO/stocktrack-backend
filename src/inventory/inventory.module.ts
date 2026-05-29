@@ -3,13 +3,13 @@ import {
   Module,
 } from '@nestjs/common';
 
-import { CategoriesController } from './inventory.controller';
+import { InventoryController } from './inventory.controller';
 
-import { CategoriesService } from './categories.service';
-import { RelationalCategoryPersistenceModule } from './infrastructure/persistence/relational/relational-persistence.module';
+import { InventoryService } from './inventory.service';
+import { RelationalInventoryPersistenceModule } from './infrastructure/persistence/relational/relational-persistence.module';
 import { FilesModule } from '../files/files.module';
 
-const infrastructurePersistenceModule = RelationalCategoryPersistenceModule;
+const infrastructurePersistenceModule = RelationalInventoryPersistenceModule;
 
 @Module({
   imports: [
@@ -17,8 +17,8 @@ const infrastructurePersistenceModule = RelationalCategoryPersistenceModule;
     infrastructurePersistenceModule,
     FilesModule,
   ],
-  controllers: [CategoriesController],
-  providers: [CategoriesService],
-  exports: [CategoriesService, infrastructurePersistenceModule],
+  controllers: [InventoryController],
+  providers: [InventoryService],
+  exports: [InventoryService, infrastructurePersistenceModule],
 })
-export class CategoriesModule { }
+export class InventoryModule {}

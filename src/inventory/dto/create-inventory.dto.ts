@@ -1,19 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-const idType = Number;
-
-export class Inventory {
-  @ApiProperty({
-    type: idType,
-  })
-  id: number | string;
-
+export class CreateInventoryDto {
   @ApiProperty({
     type: Number,
     example: 1,
     description: 'The ID of the product this inventory movement is for',
   })
-  productId: number | null;
+  productId: number;
 
   @ApiProperty({
     type: String,
@@ -28,21 +21,19 @@ export class Inventory {
     description:
       'Amount of stock moved. Positive for IN/ADJUSTMENT, negative for OUT',
   })
-  quantity: number | null;
+  quantity: number;
 
   @ApiProperty({
     type: String,
     example: 'PO-10023',
     description:
       'Optional reference number like a Purchase Order or Sales Order ID',
-    required: false,
   })
   reference?: string | null;
 
   @ApiProperty({
     type: String,
     example: 'Received new stock from supplier',
-    required: false,
   })
   notes?: string | null;
 
@@ -50,16 +41,6 @@ export class Inventory {
     type: Number,
     example: 1,
     description: 'ID of the user who performed this inventory action',
-    required: false,
   })
   userId?: number | null;
-
-  @ApiProperty()
-  createdAt: Date;
-
-  @ApiProperty()
-  updatedAt: Date;
-
-  @ApiProperty()
-  deletedAt: Date;
 }
