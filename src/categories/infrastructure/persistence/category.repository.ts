@@ -3,7 +3,10 @@ import { NullableType } from '../../../utils/types/nullable.type';
 import { IPaginationOptions } from '../../../utils/types/pagination-options';
 import { Category } from '../../domain/category';
 
-import { FilterCategoryDto, SortCategoryDto } from '../../dto/query-category.dto';
+import {
+  FilterCategoryDto,
+  SortCategoryDto,
+} from '../../dto/query-category.dto';
 
 export abstract class CategoryRepository {
   abstract create(
