@@ -9,8 +9,9 @@ import {
   HttpStatus,
   HttpCode,
   SerializeOptions,
+  Patch,
 } from '@nestjs/common';
-import { CreateInventoryDto } from './dto/create-supplier.dto';
+import { CreateSupplierDto } from './dto/create-supplier.dto';
 import {
   ApiBearerAuth,
   ApiCreatedResponse,
@@ -27,37 +28,38 @@ import {
   InfinityPaginationResponseDto,
 } from '../utils/dto/infinity-pagination-response.dto';
 import { NullableType } from '../utils/types/nullable.type';
-import { QueryInventoryDto } from './dto/query-supplier.dto';
-import { Inventory } from './domain/supplier';
-import { InventoryService } from './inventory.service';
+import { QuerySupplierDto } from './dto/query-supplier.dto';
+import { Supplier } from './domain/supplier';
+import { SuppliersService } from './suppliers.service';
 import { RolesGuard } from '../roles/roles.guard';
 import { infinityPagination } from '../utils/infinity-pagination';
+import { UpdateSupplierDto } from './dto/update-supplier.dto';
 
 @ApiBearerAuth()
 @Roles(RoleEnum.admin)
 @UseGuards(AuthGuard('jwt'), RolesGuard)
-@ApiTags('Inventory')
+@ApiTags('Suppliers')
 @Controller({
-  path: 'inventory',
+  path: 'suppliers',
   version: '1',
 })
-export class InventoryController {
-  constructor(private readonly inventoryService: InventoryService) {}
+export class SuppliersController {
+  constructor(private readonly supplierService: SuppliersService) { }
 
   @ApiCreatedResponse({
-    type: Inventory,
+    type: Supplier,
   })
   @SerializeOptions({
     groups: ['admin'],
   })
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() createInventoryDto: CreateInventoryDto): Promise<Inventory> {
-    return this.inventoryService.create(createInventoryDto);
+  create(@Body() createSupplierDto: CreateSupplierDto): Promise<Supplier> {
+    return this.supplierService.create(createSupplierDto);
   }
 
   @ApiOkResponse({
-    type: InfinityPaginationResponse(Inventory),
+    type: InfinityPaginationResponse(Supplier),
   })
   @SerializeOptions({
     groups: ['admin'],
@@ -65,8 +67,8 @@ export class InventoryController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async findAll(
-    @Query() query: QueryInventoryDto,
-  ): Promise<InfinityPaginationResponseDto<Inventory>> {
+    @Query() query: QuerySupplierDto,
+  ): Promise<InfinityPaginationResponseDto<Supplier>> {
     const page = query?.page ?? 1;
     let limit = query?.limit ?? 10;
     if (limit > 50) {
@@ -74,7 +76,7 @@ export class InventoryController {
     }
 
     return infinityPagination(
-      await this.inventoryService.findManyWithPagination({
+      await this.supplierService.findManyWithPagination({
         filterOptions: query?.filters,
         sortOptions: query?.sort,
         paginationOptions: {
@@ -87,7 +89,7 @@ export class InventoryController {
   }
 
   @ApiOkResponse({
-    type: Inventory,
+    type: Supplier,
   })
   @SerializeOptions({
     groups: ['admin'],
@@ -99,7 +101,28 @@ export class InventoryController {
     type: String,
     required: true,
   })
-  findOne(@Param('id') id: Inventory['id']): Promise<NullableType<Inventory>> {
-    return this.inventoryService.findById(id);
+  findOne(@Param('id') id: Supplier['id']): Promise<NullableType<Supplier>> {
+    return this.supplierService.findById(id);
+  }
+
+
+  @ApiOkResponse({
+    type: Supplier,
+  })
+  @SerializeOptions({
+    groups: ['admin'],
+  })
+  @Patch(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+  })
+  update(
+    @Param('id') id: Supplier['id'],
+    @Body() updateSupplierDto: UpdateSupplierDto,
+  ): Promise<Supplier | null> {
+    return this.supplierService.update(id, updateSupplierDto);
   }
 }

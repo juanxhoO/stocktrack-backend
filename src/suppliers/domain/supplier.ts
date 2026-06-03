@@ -69,7 +69,13 @@ export class Supplier {
 
   @ApiProperty({
     type: String,
-    example: 'Vendor Phone',
+    example: 'Vendor State',
+  })
+  state?: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: 'Vendor Zipcode',
   })
   zipcode?: string | null;
 

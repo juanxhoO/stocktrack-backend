@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
-import { InventoryRepository } from '../inventory.repository';
-import { InventoryRelationalRepository } from './repositories/inventory.repository';
+import { SupplierRepository } from '../supplier.repository';
+import { SupplierRelationalRepository } from './repositories/supplier.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { InventoryEntity } from './entities/inventory.entity';
+import { SupplierEntity } from './entities/supplier.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([InventoryEntity])],
+  imports: [TypeOrmModule.forFeature([SupplierEntity])],
   providers: [
     {
-      provide: InventoryRepository,
-      useClass: InventoryRelationalRepository,
+      provide: SupplierRepository,
+      useClass: SupplierRelationalRepository,
     },
   ],
-  exports: [InventoryRepository],
+  exports: [SupplierRepository],
 })
-export class RelationalInventoryPersistenceModule {}
+export class RelationalSupplierPersistenceModule { }
