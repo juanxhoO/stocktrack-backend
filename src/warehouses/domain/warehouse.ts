@@ -15,6 +15,33 @@ export class Warehouse {
   })
   name: string;
 
+
+
+  @ApiProperty({
+    type: String,
+    example: 'Warehouse City',
+  })
+  city: string | null;
+
+
+  @ApiProperty({
+    type: String,
+    example: 'Warehouse State',
+  })
+  state: string;
+
+  @ApiProperty({
+    type: String,
+    example: 'Warehouse Country',
+  })
+  country: string
+
+  @ApiProperty({
+    type: String,
+    example: 'Warehouse Zipcode',
+  })
+  zipcode?: string | null;
+
   @ApiProperty({
     type: String,
     example: '123 Warehouse St.',
