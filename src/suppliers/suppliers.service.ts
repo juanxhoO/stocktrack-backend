@@ -24,6 +24,14 @@ export class SuppliersService {
       email: createSupplierDto.email,
       phone: createSupplierDto.phone,
       address: createSupplierDto.address,
+      contactPerson: createSupplierDto.contactPerson,
+      taxId: createSupplierDto.taxId,
+      country: createSupplierDto.country,
+      state: createSupplierDto.state,
+      city: createSupplierDto.city,
+      zipcode: createSupplierDto.zipcode,
+      observations: createSupplierDto.observations,
+      isActive: createSupplierDto.isActive ?? true,
     });
   }
 
@@ -65,6 +73,14 @@ export class SuppliersService {
       email: updateSupplierDto.email,
       phone: updateSupplierDto.phone,
       address: updateSupplierDto.address,
+      contactPerson: updateSupplierDto.contactPerson,
+      taxId: updateSupplierDto.taxId,
+      country: updateSupplierDto.country,
+      state: updateSupplierDto.state,
+      city: updateSupplierDto.city,
+      zipcode: updateSupplierDto.zipcode,
+      observations: updateSupplierDto.observations,
+      isActive: updateSupplierDto.isActive,
     });
   }
 

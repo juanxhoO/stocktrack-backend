@@ -15,13 +15,11 @@ export class Warehouse {
   })
   name: string;
 
-
-
   @ApiProperty({
     type: String,
     example: 'Warehouse City',
   })
-  city: string | null;
+  city: string;
 
 
   @ApiProperty({
@@ -51,12 +49,54 @@ export class Warehouse {
   address?: string | null;
 
   @ApiProperty({
+    type: Number,
+    example: 1000,
+    description: 'Warehouse capacity',
+    required: false,
+  })
+  capacity?: number | null;
+
+  @ApiProperty({
+    type: String,
+    example: 'Warehouse manager',
+    required: false,
+  })
+  manager?: string | null;
+
+  @ApiProperty({
+    type: Boolean,
+    description: 'Warehouse has climate control',
+    required: false,
+  })
+  hasClimateControl?: boolean;
+
+  @ApiProperty({
+    type: Number,
+    example: 1000,
+    description: 'Warehouse capacity',
+    required: false,
+  })
+  availableCapacity?: number | null;
+
+  @ApiProperty({
     type: String,
     example: '+1 555-1234',
     description: 'Warehouse phone',
     required: false,
   })
   phone?: string | null;
+
+  @ApiProperty({
+    type: Object,
+    example: {
+      latitude: '34.0522',
+      longitude: '-118.2437',
+    },
+    description: 'Warehouse location',
+    required: false,
+  })
+  location?: { latitude: number; longitude: number } | null;
+
 
   @ApiProperty({
     type: Boolean,

@@ -1,5 +1,5 @@
 import { PartialType, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString, IsOptional, IsBoolean } from 'class-validator';
+import { IsString, IsOptional, IsBoolean, IsObject } from 'class-validator';
 import { CreateWarehouseDto } from './create-warehouse.dto';
 
 export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
@@ -31,10 +31,63 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   phone?: string | null;
 
   @ApiPropertyOptional({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  country: string;
+
+  @ApiPropertyOptional({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  city: string | null;
+
+  @ApiPropertyOptional({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  zipcode: string | null;
+
+  @ApiPropertyOptional({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  state: string;
+
+  @ApiPropertyOptional({
     type: Boolean,
     example: true,
   })
   @IsBoolean()
   @IsOptional()
   isActive?: boolean;
+
+
+  @ApiPropertyOptional({
+    type: Boolean,
+    example: true,
+    required: false,
+  })
+  @IsObject()
+  @IsOptional()
+  location?: {
+    latitude: string;
+    longitude: string;
+  };
 }

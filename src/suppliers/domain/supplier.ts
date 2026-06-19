@@ -17,67 +17,67 @@ export class Supplier {
 
   @ApiProperty({
     type: String,
+    example: 'Vendor contact person',
+    description: 'Supplier contact person',
+  })
+  contactPerson: string | null;
+
+  @ApiProperty({
+    type: String,
     example: 'Vendor email',
     description: 'Supplier email',
   })
-  email?: string | null;
+  email: string | null;
 
   @ApiProperty({
     type: String,
     example: 'Vendor Address',
     description: 'Supplier address',
   })
-  address?: string | null;
+  address: string | null;
 
   @ApiProperty({
     type: String,
-    example: 'Vendor Phone',
+    example: '0999876654',
   })
-  phone?: string | null;
+  phone: string | null;
 
   @ApiProperty({
     type: String,
-    example: 'Vendor Country',
+    example: 'Ecuador',
   })
-  country?: string | null;
+  country: string | null;
 
   @ApiProperty({
     type: String,
-    example: 'Vendor Tax ID',
+    example: '24799812734',
     description: 'Supplier tax ID',
   })
-  taxId?: string | null;
-
-  @ApiProperty({
-    type: String,
-    example: 'Vendor Currency',
-    description: 'Supplier currency',
-  })
-  currency?: string | null;
+  taxId: string | null;
 
   @ApiProperty({
     type: Boolean,
     example: true,
   })
-  isActive?: boolean;
+  isActive: boolean;
 
   @ApiProperty({
     type: String,
-    example: 'Vendor City',
+    example: 'Guayaquil',
   })
-  city?: string | null;
+  city: string | null;
 
   @ApiProperty({
     type: String,
-    example: 'Vendor State',
+    example: 'Guayas',
   })
-  state?: string | null;
+  state: string | null;
 
   @ApiProperty({
     type: String,
-    example: 'Vendor Zipcode',
+    example: '090505',
   })
-  zipcode?: string | null;
+  zipcode: string | null;
 
   @ApiProperty({
     type: String,

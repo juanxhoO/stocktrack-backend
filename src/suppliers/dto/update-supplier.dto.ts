@@ -8,8 +8,18 @@ export class UpdateSupplierDto extends PartialType(CreateSupplierDto) {
     example: 1,
     description: 'The name of the supplier',
   })
+  @IsString()
   @IsOptional()
   name?: string;
+
+  @ApiPropertyOptional({
+    type: String,
+    example: 'Vendor contact person',
+    description: 'Supplier contact person',
+  })
+  @IsString()
+  @IsOptional()
+  contactPerson?: string | null;
 
   @ApiPropertyOptional({
     type: String,
@@ -71,20 +81,6 @@ export class UpdateSupplierDto extends PartialType(CreateSupplierDto) {
     example: 'Vendor Currency',
   })
   @IsOptional()
-  currency?: string;
-
-  @ApiPropertyOptional({
-    type: String,
-    example: 'Vendor Currency',
-  })
-  @IsOptional()
   observations?: string | null;
 
-  @ApiPropertyOptional({
-    type: String,
-    example: 1,
-    description: 'ID of the user who performed this inventory action',
-  })
-  @IsOptional()
-  userId?: number | null;
 }

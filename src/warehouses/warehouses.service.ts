@@ -17,6 +17,10 @@ export class WarehousesService {
     return this.warehouseRepository.create({
       name: createWarehouseDto.name,
       address: createWarehouseDto.address,
+      city: createWarehouseDto.city,
+      state: createWarehouseDto.state,
+      country: createWarehouseDto.country,
+      zipcode: createWarehouseDto.zipcode,
       phone: createWarehouseDto.phone,
       isActive: createWarehouseDto.isActive ?? true,
     });

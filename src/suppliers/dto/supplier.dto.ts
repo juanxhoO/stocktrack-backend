@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
-export class CategoryDto {
+export class SupplierDto {
   @ApiProperty({
     type: String,
-    example: 'categoryId',
+    example: 'supplierId',
   })
   @IsNotEmpty()
   id: string | number;

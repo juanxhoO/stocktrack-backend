@@ -18,6 +18,13 @@ export class CreateSupplierDto {
 
   @ApiProperty({
     type: String,
+    example: 'Vendor contact person',
+    description: 'Supplier contact person',
+  })
+  contactPerson: string | null;
+
+  @ApiProperty({
+    type: String,
     example: 'Vendor Address',
     description: 'Supplier address',
   })
@@ -43,17 +50,16 @@ export class CreateSupplierDto {
   taxId: string | null;
 
   @ApiProperty({
-    type: String,
-    example: 'Vendor Currency',
-    description: 'Supplier currency',
-  })
-  currency?: string | null;
-
-  @ApiProperty({
     type: Boolean,
     example: true,
   })
   isActive: boolean;
+
+  @ApiProperty({
+    type: String,
+    example: 'Vendor State',
+  })
+  state: string | null;
 
   @ApiProperty({
     type: String,
@@ -66,8 +72,7 @@ export class CreateSupplierDto {
     example: 'Vendor zipcode',
   })
   @IsString()
-  @IsOptional()
-  zipcode?: string | null;
+  zipcode: string | null;
 
   @ApiProperty({
     type: String,

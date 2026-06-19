@@ -9,6 +9,7 @@ export class SupplierMapper {
     domainEntity.address = raw.address;
     domainEntity.email = raw.email;
     domainEntity.phone = raw.phone;
+    domainEntity.contactPerson = raw.contactPerson;
     domainEntity.observations = raw.observations;
     domainEntity.isActive = raw.isActive;
     domainEntity.taxId = raw.taxId;
@@ -31,6 +32,7 @@ export class SupplierMapper {
     persistenceEntity.address = domainEntity.address;
     persistenceEntity.email = domainEntity.email;
     persistenceEntity.phone = domainEntity.phone;
+    persistenceEntity.contactPerson = domainEntity.contactPerson;
     persistenceEntity.observations = domainEntity.observations;
     persistenceEntity.isActive = domainEntity.isActive;
     persistenceEntity.taxId = domainEntity.taxId;

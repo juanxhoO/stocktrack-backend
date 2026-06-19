@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString, IsBoolean } from 'class-validator';
+import { IsOptional, IsString, IsBoolean, IsObject } from 'class-validator';
 
 export class CreateWarehouseDto {
   @ApiProperty({
@@ -20,6 +20,26 @@ export class CreateWarehouseDto {
   @IsOptional()
   address?: string | null;
 
+
+  @ApiProperty({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  country: string;
+
+  @ApiProperty({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  city: string;
+
+
   @ApiProperty({
     type: String,
     example: '+1 555-1234',
@@ -31,6 +51,25 @@ export class CreateWarehouseDto {
   phone?: string | null;
 
   @ApiProperty({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  zipcode?: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: '123 Warehouse St.',
+    description: 'Warehouse address',
+    required: false,
+  })
+  @IsString()
+  state: string;
+
+  @ApiProperty({
     type: Boolean,
     example: true,
     required: false,
@@ -38,4 +77,18 @@ export class CreateWarehouseDto {
   @IsBoolean()
   @IsOptional()
   isActive?: boolean;
+
+
+  @ApiProperty({
+    type: Boolean,
+    example: true,
+    required: false,
+  })
+  @IsObject()
+  @IsOptional()
+  location?: {
+    latitude: string;
+    longitude: string;
+  };
+
 }

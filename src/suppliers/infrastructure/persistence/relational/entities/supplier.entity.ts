@@ -20,34 +20,37 @@ export class SupplierEntity extends EntityRelationalHelper {
   name: string;
 
   @Column({ type: String, nullable: true })
-  address?: string | null;
+  address: string | null;
 
   @Column({ type: String, nullable: true })
-  email?: string | null;
+  email: string | null;
 
   @Column({ type: String, nullable: true })
-  phone?: string | null;
+  phone: string | null;
+
+  @Column({ type: String, nullable: true })
+  contactPerson: string | null;
 
   @Column({ type: String, nullable: true })
   observations?: string | null;
 
   @Column({ type: Boolean, nullable: true })
-  isActive?: boolean;
+  isActive: boolean;
 
   @Column({ type: String, nullable: true })
-  taxId?: string | null;
+  taxId: string | null;
 
   @Column({ type: String, nullable: true })
-  country?: string | null;
+  country: string | null;
 
   @Column({ type: String, nullable: true })
-  state?: string | null;
+  state: string | null;
 
   @Column({ type: String, nullable: true })
-  city?: string | null;
+  city: string | null;
 
   @Column({ type: String, nullable: true })
-  zipcode?: string | null;
+  zipcode: string | null;
 
   @CreateDateColumn()
   createdAt: Date;
