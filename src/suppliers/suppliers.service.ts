@@ -9,9 +9,7 @@ import { UpdateSupplierDto } from './dto/update-supplier.dto';
 
 @Injectable()
 export class SuppliersService {
-  constructor(
-    private readonly supplierRepository: SupplierRepository,
-  ) { }
+  constructor(private readonly supplierRepository: SupplierRepository) {}
 
   async create(createSupplierDto: CreateSupplierDto): Promise<Supplier> {
     // Do not remove comment below.

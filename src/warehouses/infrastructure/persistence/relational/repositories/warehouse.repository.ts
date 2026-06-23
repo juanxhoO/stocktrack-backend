@@ -73,7 +73,10 @@ export class WarehouseRelationalRepository implements WarehouseRepository {
     return entities.map((entity) => WarehouseMapper.toDomain(entity));
   }
 
-  async update(id: Warehouse['id'], payload: Partial<Warehouse>): Promise<Warehouse> {
+  async update(
+    id: Warehouse['id'],
+    payload: Partial<Warehouse>,
+  ): Promise<Warehouse> {
     const entity = await this.warehouseRepository.findOne({
       where: { id: Number(id) },
     });

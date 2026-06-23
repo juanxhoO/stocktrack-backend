@@ -21,7 +21,6 @@ export class Warehouse {
   })
   city: string;
 
-
   @ApiProperty({
     type: String,
     example: 'Warehouse State',
@@ -32,13 +31,13 @@ export class Warehouse {
     type: String,
     example: 'Warehouse Country',
   })
-  country: string
+  country: string;
 
   @ApiProperty({
     type: String,
     example: 'Warehouse Zipcode',
   })
-  zipcode?: string | null;
+  zipcode: string;
 
   @ApiProperty({
     type: String,
@@ -96,7 +95,6 @@ export class Warehouse {
     required: false,
   })
   location?: { latitude: number; longitude: number } | null;
-
 
   @ApiProperty({
     type: Boolean,

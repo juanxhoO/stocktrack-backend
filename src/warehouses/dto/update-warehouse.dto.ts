@@ -19,7 +19,7 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   })
   @IsString()
   @IsOptional()
-  address?: string | null;
+  address?: string;
 
   @ApiPropertyOptional({
     type: String,
@@ -48,7 +48,7 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   })
   @IsString()
   @IsOptional()
-  city: string | null;
+  city: string;
 
   @ApiPropertyOptional({
     type: String,
@@ -58,7 +58,7 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   })
   @IsString()
   @IsOptional()
-  zipcode: string | null;
+  zipcode?: string;
 
   @ApiPropertyOptional({
     type: String,
@@ -77,7 +77,6 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   @IsBoolean()
   @IsOptional()
   isActive?: boolean;
-
 
   @ApiPropertyOptional({
     type: Boolean,

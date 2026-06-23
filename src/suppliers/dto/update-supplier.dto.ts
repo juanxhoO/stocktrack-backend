@@ -82,5 +82,4 @@ export class UpdateSupplierDto extends PartialType(CreateSupplierDto) {
   })
   @IsOptional()
   observations?: string | null;
-
 }

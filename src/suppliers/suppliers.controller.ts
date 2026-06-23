@@ -44,7 +44,7 @@ import { UpdateSupplierDto } from './dto/update-supplier.dto';
   version: '1',
 })
 export class SuppliersController {
-  constructor(private readonly supplierService: SuppliersService) { }
+  constructor(private readonly supplierService: SuppliersService) {}
 
   @ApiCreatedResponse({
     type: Supplier,
@@ -104,7 +104,6 @@ export class SuppliersController {
   findOne(@Param('id') id: Supplier['id']): Promise<NullableType<Supplier>> {
     return this.supplierService.findById(id);
   }
-
 
   @ApiOkResponse({
     type: Supplier,

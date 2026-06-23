@@ -32,7 +32,7 @@ export class WarehouseEntity extends EntityRelationalHelper {
   state: string;
 
   @Column({ type: String, nullable: false })
-  zipcode?: string | null;
+  zipcode: string;
 
   @Column({ type: String, nullable: false })
   country: string;

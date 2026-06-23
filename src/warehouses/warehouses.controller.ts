@@ -45,7 +45,7 @@ import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
   version: '1',
 })
 export class WarehousesController {
-  constructor(private readonly warehouseService: WarehousesService) { }
+  constructor(private readonly warehouseService: WarehousesService) {}
 
   @ApiCreatedResponse({
     type: Warehouse,
@@ -105,7 +105,6 @@ export class WarehousesController {
   findOne(@Param('id') id: Warehouse['id']): Promise<NullableType<Warehouse>> {
     return this.warehouseService.findById(id);
   }
-
 
   @ApiOkResponse({
     type: Warehouse,

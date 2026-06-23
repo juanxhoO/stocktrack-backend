@@ -14,12 +14,9 @@ export class CreateWarehouseDto {
     type: String,
     example: '123 Warehouse St.',
     description: 'Warehouse address',
-    required: false,
   })
   @IsString()
-  @IsOptional()
-  address?: string | null;
-
+  address: string;
 
   @ApiProperty({
     type: String,
@@ -39,7 +36,6 @@ export class CreateWarehouseDto {
   @IsString()
   city: string;
 
-
   @ApiProperty({
     type: String,
     example: '+1 555-1234',
@@ -54,11 +50,9 @@ export class CreateWarehouseDto {
     type: String,
     example: '123 Warehouse St.',
     description: 'Warehouse address',
-    required: false,
   })
   @IsString()
-  @IsOptional()
-  zipcode?: string | null;
+  zipcode: string;
 
   @ApiProperty({
     type: String,
@@ -78,7 +72,6 @@ export class CreateWarehouseDto {
   @IsOptional()
   isActive?: boolean;
 
-
   @ApiProperty({
     type: Boolean,
     example: true,
@@ -90,5 +83,4 @@ export class CreateWarehouseDto {
     latitude: string;
     longitude: string;
   };
-
 }

@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { NullableType } from '../utils/types/nullable.type';
-import { FilterWarehouseDto, SortWarehouseDto } from './dto/query-warehouse.dto';
+import {
+  FilterWarehouseDto,
+  SortWarehouseDto,
+} from './dto/query-warehouse.dto';
 import { WarehouseRepository } from './infrastructure/persistence/warehouse.repository';
 import { Warehouse } from './domain/warehouse';
 import { IPaginationOptions } from '../utils/types/pagination-options';
@@ -9,9 +12,7 @@ import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 
 @Injectable()
 export class WarehousesService {
-  constructor(
-    private readonly warehouseRepository: WarehouseRepository,
-  ) { }
+  constructor(private readonly warehouseRepository: WarehouseRepository) {}
 
   async create(createWarehouseDto: CreateWarehouseDto): Promise<Warehouse> {
     return this.warehouseRepository.create({
