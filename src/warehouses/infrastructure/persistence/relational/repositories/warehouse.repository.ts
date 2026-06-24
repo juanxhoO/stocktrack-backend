@@ -17,7 +17,7 @@ export class WarehouseRelationalRepository implements WarehouseRepository {
   constructor(
     @InjectRepository(WarehouseEntity)
     private readonly warehouseRepository: Repository<WarehouseEntity>,
-  ) {}
+  ) { }
 
   async create(data: Warehouse): Promise<Warehouse> {
     const persistenceModel = WarehouseMapper.toPersistence(data);
@@ -45,6 +45,14 @@ export class WarehouseRelationalRepository implements WarehouseRepository {
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
       where: where,
+      relations: {
+        manager: true
+      },
+      select: {
+        manager: {
+          id: true,
+        },
+      },
       order: sortOptions?.reduce(
         (accumulator, sort) => ({
           ...accumulator,
@@ -53,13 +61,13 @@ export class WarehouseRelationalRepository implements WarehouseRepository {
         {},
       ),
     });
-
     return entities.map((entity) => WarehouseMapper.toDomain(entity));
   }
 
   async findById(id: Warehouse['id']): Promise<NullableType<Warehouse>> {
     const entity = await this.warehouseRepository.findOne({
       where: { id: Number(id) },
+      relations: ['manager'],
     });
 
     return entity ? WarehouseMapper.toDomain(entity) : null;
@@ -73,7 +81,10 @@ export class WarehouseRelationalRepository implements WarehouseRepository {
     return entities.map((entity) => WarehouseMapper.toDomain(entity));
   }
 
-  async update(id: Warehouse['id'], payload: Partial<Warehouse>): Promise<Warehouse> {
+  async update(
+    id: Warehouse['id'],
+    payload: Partial<Warehouse>,
+  ): Promise<Warehouse> {
     const entity = await this.warehouseRepository.findOne({
       where: { id: Number(id) },
     });

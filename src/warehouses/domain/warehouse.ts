@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { User } from '../../users/domain/user';
 
 const idType = Number;
 
@@ -21,7 +22,6 @@ export class Warehouse {
   })
   city: string;
 
-
   @ApiProperty({
     type: String,
     example: 'Warehouse State',
@@ -32,13 +32,13 @@ export class Warehouse {
     type: String,
     example: 'Warehouse Country',
   })
-  country: string
+  country: string;
 
   @ApiProperty({
     type: String,
     example: 'Warehouse Zipcode',
   })
-  zipcode?: string | null;
+  zipcode: string;
 
   @ApiProperty({
     type: String,
@@ -57,11 +57,16 @@ export class Warehouse {
   capacity?: number | null;
 
   @ApiProperty({
-    type: String,
-    example: 'Warehouse manager',
+    type: Object,
+    example: {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Doe',
+    },
+    description: 'Warehouse manager',
     required: false,
   })
-  manager?: string | null;
+  manager: User;
 
   @ApiProperty({
     type: Boolean,
@@ -96,7 +101,6 @@ export class Warehouse {
     required: false,
   })
   location?: { latitude: number; longitude: number } | null;
-
 
   @ApiProperty({
     type: Boolean,

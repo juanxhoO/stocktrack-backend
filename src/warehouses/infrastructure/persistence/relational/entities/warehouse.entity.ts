@@ -3,11 +3,13 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper';
+import { UserEntity } from '../../../../../users/infrastructure/persistence/relational/entities/user.entity';
 
 @Entity({
   name: 'warehouse',
@@ -32,7 +34,7 @@ export class WarehouseEntity extends EntityRelationalHelper {
   state: string;
 
   @Column({ type: String, nullable: false })
-  zipcode?: string | null;
+  zipcode: string;
 
   @Column({ type: String, nullable: false })
   country: string;
@@ -40,8 +42,8 @@ export class WarehouseEntity extends EntityRelationalHelper {
   @Column({ type: Boolean, nullable: true, default: true })
   isActive?: boolean;
 
-  @Column({ type: String, nullable: true })
-  manager?: string | null;
+  @ManyToOne(() => UserEntity, (user) => user.warehouses)
+  manager?: UserEntity | null;
 
   @Column({ type: Number, nullable: true })
   capacity?: number | null;

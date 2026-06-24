@@ -14,4 +14,4 @@ import { SupplierEntity } from './entities/supplier.entity';
   ],
   exports: [SupplierRepository],
 })
-export class RelationalSupplierPersistenceModule { }
+export class RelationalSupplierPersistenceModule {}

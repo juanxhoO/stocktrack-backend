@@ -1,19 +1,30 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { NullableType } from '../utils/types/nullable.type';
-import { FilterWarehouseDto, SortWarehouseDto } from './dto/query-warehouse.dto';
+import {
+  FilterWarehouseDto,
+  SortWarehouseDto,
+} from './dto/query-warehouse.dto';
 import { WarehouseRepository } from './infrastructure/persistence/warehouse.repository';
 import { Warehouse } from './domain/warehouse';
 import { IPaginationOptions } from '../utils/types/pagination-options';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class WarehousesService {
   constructor(
     private readonly warehouseRepository: WarehouseRepository,
+    private readonly userService: UsersService,
   ) { }
 
   async create(createWarehouseDto: CreateWarehouseDto): Promise<Warehouse> {
+    //Check if Manager Exists
+    const manager = await this.userService.findById(createWarehouseDto.manager);
+    if (!manager) {
+      throw new BadRequestException('Manager does not exist');
+    }
+
     return this.warehouseRepository.create({
       name: createWarehouseDto.name,
       address: createWarehouseDto.address,
@@ -23,6 +34,7 @@ export class WarehousesService {
       zipcode: createWarehouseDto.zipcode,
       phone: createWarehouseDto.phone,
       isActive: createWarehouseDto.isActive ?? true,
+      manager: manager,
     });
   }
 

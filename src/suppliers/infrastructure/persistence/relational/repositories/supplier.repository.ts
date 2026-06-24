@@ -15,7 +15,7 @@ export class SupplierRelationalRepository implements SupplierRepository {
   constructor(
     @InjectRepository(SupplierEntity)
     private readonly supplierRepository: Repository<SupplierEntity>,
-  ) { }
+  ) {}
 
   async create(data: Supplier): Promise<Supplier> {
     const persistenceModel = SupplierMapper.toPersistence(data);

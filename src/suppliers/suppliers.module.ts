@@ -21,4 +21,4 @@ const infrastructurePersistenceModule = RelationalSupplierPersistenceModule;
   providers: [SuppliersService],
   exports: [SuppliersService, infrastructurePersistenceModule],
 })
-export class SuppliersModule { }
+export class SuppliersModule {}
