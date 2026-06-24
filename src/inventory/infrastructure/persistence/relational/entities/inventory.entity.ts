@@ -12,6 +12,7 @@ import {
 import { StatusEntity } from '../../../../../statuses/infrastructure/persistence/relational/entities/status.entity';
 import { FileEntity } from '../../../../../files/infrastructure/persistence/relational/entities/file.entity';
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper';
+import { ProductEntity } from '../../../../../products/infrastructure/persistence/relational/entities/product.entity';
 
 @Entity({
   name: 'category',
@@ -29,8 +30,8 @@ export class InventoryEntity extends EntityRelationalHelper {
   @Column({ type: String, nullable: true })
   description: string | null;
 
-  @Column({ type: Number, nullable: true })
-  productId: number | null;
+  @ManyToOne(() => ProductEntity, (product) => product.inventories)
+  product: ProductEntity
 
   @Column({ type: Number, nullable: true })
   quantity: number | null;

@@ -7,9 +7,11 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToOne,
+  OneToMany
 } from 'typeorm';
 import { FileEntity } from '../../../../../files/infrastructure/persistence/relational/entities/file.entity';
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper';
+import { InventoryEntity } from '../../../../../inventory/infrastructure/persistence/relational/entities/inventory.entity';
 
 @Entity({
   name: 'product',
@@ -26,6 +28,9 @@ export class ProductEntity extends EntityRelationalHelper {
 
   @Column({ type: Number })
   price: number;
+
+  @OneToMany(() => InventoryEntity, (inventory) => inventory.product)
+  inventories: InventoryEntity[]
 
   @OneToOne(() => FileEntity, {
     eager: true,

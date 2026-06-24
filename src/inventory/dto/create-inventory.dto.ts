@@ -6,7 +6,7 @@ export class CreateInventoryDto {
     example: 1,
     description: 'The ID of the product this inventory movement is for',
   })
-  productId: number;
+  productId: number | string;
 
   @ApiProperty({
     type: String,
@@ -21,7 +21,7 @@ export class CreateInventoryDto {
     description:
       'Amount of stock moved. Positive for IN/ADJUSTMENT, negative for OUT',
   })
-  quantity: number;
+  quantity: number | null;
 
   @ApiProperty({
     type: String,
@@ -36,11 +36,4 @@ export class CreateInventoryDto {
     example: 'Received new stock from supplier',
   })
   notes?: string | null;
-
-  @ApiProperty({
-    type: Number,
-    example: 1,
-    description: 'ID of the user who performed this inventory action',
-  })
-  userId?: number | null;
 }
