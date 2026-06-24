@@ -13,18 +13,17 @@ import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class WarehousesService {
-  constructor(private readonly warehouseRepository: WarehouseRepository,
+  constructor(
+    private readonly warehouseRepository: WarehouseRepository,
     private readonly userService: UsersService,
   ) { }
 
   async create(createWarehouseDto: CreateWarehouseDto): Promise<Warehouse> {
-
     //Check if Manager Exists
     const manager = await this.userService.findById(createWarehouseDto.manager);
     if (!manager) {
       throw new BadRequestException('Manager does not exist');
     }
-
 
     return this.warehouseRepository.create({
       name: createWarehouseDto.name,
@@ -36,7 +35,7 @@ export class WarehousesService {
       phone: createWarehouseDto.phone,
       isActive: createWarehouseDto.isActive ?? true,
       manager: manager,
-    },);
+    });
   }
 
   findManyWithPagination({

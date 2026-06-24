@@ -12,4 +12,4 @@ const infrastructurePersistenceModule = RelationalWarehousePersistenceModule;
   providers: [WarehousesService],
   exports: [WarehousesService, infrastructurePersistenceModule],
 })
-export class WarehousesModule { }
+export class WarehousesModule {}

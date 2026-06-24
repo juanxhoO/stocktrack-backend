@@ -43,7 +43,7 @@ export class WarehouseEntity extends EntityRelationalHelper {
   isActive?: boolean;
 
   @ManyToOne(() => UserEntity, (user) => user.warehouses)
-  manager: UserEntity;
+  manager?: UserEntity | null;
 
   @Column({ type: Number, nullable: true })
   capacity?: number | null;

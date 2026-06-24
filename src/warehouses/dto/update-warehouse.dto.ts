@@ -78,7 +78,6 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   @IsOptional()
   isActive?: boolean;
 
-
   @ApiPropertyOptional({
     type: String,
     example: 'Juan Perez',
@@ -88,7 +87,6 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   @IsString()
   @IsOptional()
   manager?: string;
-
 
   @ApiPropertyOptional({
     type: Boolean,
