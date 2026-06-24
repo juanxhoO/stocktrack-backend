@@ -35,7 +35,6 @@ export class WarehouseMapper {
     persistenceEntity.zipcode = domainEntity.zipcode;
     persistenceEntity.country = domainEntity.country;
     persistenceEntity.isActive = domainEntity.isActive;
-    persistenceEntity.manager = domainEntity.manager;
     persistenceEntity.capacity = domainEntity.capacity;
     persistenceEntity.hasClimateControl = domainEntity.hasClimateControl;
     persistenceEntity.createdAt = domainEntity.createdAt;

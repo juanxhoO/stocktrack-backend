@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString, IsBoolean, IsObject } from 'class-validator';
+import { IsOptional, IsString, IsBoolean, IsObject, IsArray } from 'class-validator';
 
 export class CreateWarehouseDto {
   @ApiProperty({
@@ -9,6 +9,26 @@ export class CreateWarehouseDto {
   })
   @IsString()
   name: string;
+
+  @ApiProperty({
+    type: Array,
+    example: ['sdsd2323-dsd1123-dsdsd'],
+    description: 'Warehouse inventories ids to asssign',
+    required: false,
+  })
+  @IsArray()
+  @IsOptional()
+  inventories: string[];
+
+  @ApiProperty({
+    type: String,
+    example: '123456789',
+    description: 'Warehouse manager id',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  manager: string;
 
   @ApiProperty({
     type: String,
@@ -40,11 +60,9 @@ export class CreateWarehouseDto {
     type: String,
     example: '+1 555-1234',
     description: 'Warehouse phone',
-    required: false,
   })
   @IsString()
-  @IsOptional()
-  phone?: string | null;
+  phone: string | null;
 
   @ApiProperty({
     type: String,
@@ -66,11 +84,9 @@ export class CreateWarehouseDto {
   @ApiProperty({
     type: Boolean,
     example: true,
-    required: false,
   })
   @IsBoolean()
-  @IsOptional()
-  isActive?: boolean;
+  isActive: boolean;
 
   @ApiProperty({
     type: Boolean,

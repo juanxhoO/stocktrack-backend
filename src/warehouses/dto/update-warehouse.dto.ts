@@ -78,6 +78,18 @@ export class UpdateWarehouseDto extends PartialType(CreateWarehouseDto) {
   @IsOptional()
   isActive?: boolean;
 
+
+  @ApiPropertyOptional({
+    type: String,
+    example: 'Juan Perez',
+    description: 'Warehouse manager name',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  manager?: string;
+
+
   @ApiPropertyOptional({
     type: Boolean,
     example: true,
