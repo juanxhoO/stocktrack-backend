@@ -23,4 +23,4 @@ const infrastructurePersistenceModule = RelationalInventoryPersistenceModule;
   providers: [InventoryService],
   exports: [InventoryService, infrastructurePersistenceModule],
 })
-export class InventoryModule { }
+export class InventoryModule {}

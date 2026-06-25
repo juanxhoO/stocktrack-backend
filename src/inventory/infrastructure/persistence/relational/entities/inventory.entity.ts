@@ -6,16 +6,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  JoinColumn,
-  OneToOne,
 } from 'typeorm';
-import { StatusEntity } from '../../../../../statuses/infrastructure/persistence/relational/entities/status.entity';
-import { FileEntity } from '../../../../../files/infrastructure/persistence/relational/entities/file.entity';
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper';
 import { ProductEntity } from '../../../../../products/infrastructure/persistence/relational/entities/product.entity';
 
 @Entity({
-  name: 'category',
+  name: 'inventory',
 })
 export class InventoryEntity extends EntityRelationalHelper {
   @PrimaryGeneratedColumn()
@@ -24,28 +20,23 @@ export class InventoryEntity extends EntityRelationalHelper {
   @Column({ type: String, nullable: false })
   name: string | null;
 
-  @Column({ type: String, nullable: false, unique: true })
-  slug: string | null;
-
   @Column({ type: String, nullable: true })
   description: string | null;
 
+  @Column({ type: String, nullable: true })
+  type: string | null;
+
+  @Column({ type: String, nullable: true })
+  reference: string | null;
+
   @ManyToOne(() => ProductEntity, (product) => product.inventories)
-  product: ProductEntity
+  product: ProductEntity;
 
   @Column({ type: Number, nullable: true })
   quantity: number | null;
 
-  @OneToOne(() => FileEntity, {
-    eager: true,
-  })
-  @JoinColumn()
-  photo?: FileEntity | null;
-
-  @ManyToOne(() => StatusEntity, {
-    eager: true,
-  })
-  status?: StatusEntity;
+  @Column({ type: String, nullable: true })
+  notes: string | null;
 
   @CreateDateColumn()
   createdAt: Date;

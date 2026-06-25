@@ -16,7 +16,7 @@ export class WarehousesService {
   constructor(
     private readonly warehouseRepository: WarehouseRepository,
     private readonly userService: UsersService,
-  ) { }
+  ) {}
 
   async create(createWarehouseDto: CreateWarehouseDto): Promise<Warehouse> {
     //Check if Manager Exists

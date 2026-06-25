@@ -38,7 +38,7 @@ import { infinityPagination } from '../utils/infinity-pagination';
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiTags('Inventory')
 @Controller({
-  path: 'inventory',
+  path: 'inventories',
   version: '1',
 })
 export class InventoryController {
@@ -53,6 +53,7 @@ export class InventoryController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createInventoryDto: CreateInventoryDto): Promise<Inventory> {
+    console.log('createInventoryDto', createInventoryDto);
     return this.inventoryService.create(createInventoryDto);
   }
 

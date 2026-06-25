@@ -16,13 +16,15 @@ export class InventoryService {
   constructor(
     private readonly inventoryRepository: InventoryRepository,
     private readonly productsService: ProductsService,
-  ) { }
+  ) {}
 
   async create(createInventoryDto: CreateInventoryDto): Promise<Inventory> {
     // Do not remove comment below.
     // <creating-property />
 
-    const product = await this.productsService.findById(createInventoryDto.productId);
+    const product = await this.productsService.findById(
+      createInventoryDto.productId,
+    );
     if (!product) {
       throw new BadRequestException('Product does not exist');
     }

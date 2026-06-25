@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToOne,
-  OneToMany
+  OneToMany,
 } from 'typeorm';
 import { FileEntity } from '../../../../../files/infrastructure/persistence/relational/entities/file.entity';
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper';
@@ -30,7 +30,7 @@ export class ProductEntity extends EntityRelationalHelper {
   price: number;
 
   @OneToMany(() => InventoryEntity, (inventory) => inventory.product)
-  inventories: InventoryEntity[]
+  inventories: InventoryEntity[];
 
   @OneToOne(() => FileEntity, {
     eager: true,
