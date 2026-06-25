@@ -1,18 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsNumber, IsOptional } from 'class-validator';
 
 export class CreateInventoryDto {
   @ApiProperty({
-    type: Number,
+    type: String,
     example: 1,
     description: 'The ID of the product this inventory movement is for',
   })
-  productId: number;
+  @IsString()
+  product: string;
 
   @ApiProperty({
     type: String,
     example: 'IN',
     description: 'Type of movement (IN, OUT, ADJUSTMENT, RETURN)',
   })
+  @IsString()
   type: string;
 
   @ApiProperty({
@@ -21,7 +24,8 @@ export class CreateInventoryDto {
     description:
       'Amount of stock moved. Positive for IN/ADJUSTMENT, negative for OUT',
   })
-  quantity: number;
+  @IsNumber()
+  quantity: number | null;
 
   @ApiProperty({
     type: String,
@@ -29,18 +33,14 @@ export class CreateInventoryDto {
     description:
       'Optional reference number like a Purchase Order or Sales Order ID',
   })
+  @IsString()
   reference?: string | null;
 
   @ApiProperty({
     type: String,
     example: 'Received new stock from supplier',
   })
+  @IsString()
+  @IsOptional()
   notes?: string | null;
-
-  @ApiProperty({
-    type: Number,
-    example: 1,
-    description: 'ID of the user who performed this inventory action',
-  })
-  userId?: number | null;
 }

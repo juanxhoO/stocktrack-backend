@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Product } from '../../products/domain/product';
 
 const idType = Number;
 
@@ -9,11 +10,10 @@ export class Inventory {
   id: number | string;
 
   @ApiProperty({
-    type: Number,
-    example: 1,
-    description: 'The ID of the product this inventory movement is for',
+    type: Product,
+    required: false,
   })
-  productId: number | null;
+  product: Product | null;
 
   @ApiProperty({
     type: String,
@@ -45,14 +45,6 @@ export class Inventory {
     required: false,
   })
   notes?: string | null;
-
-  @ApiProperty({
-    type: Number,
-    example: 1,
-    description: 'ID of the user who performed this inventory action',
-    required: false,
-  })
-  userId?: number | null;
 
   @ApiProperty()
   createdAt: Date;

@@ -17,7 +17,7 @@ export class WarehouseRelationalRepository implements WarehouseRepository {
   constructor(
     @InjectRepository(WarehouseEntity)
     private readonly warehouseRepository: Repository<WarehouseEntity>,
-  ) { }
+  ) {}
 
   async create(data: Warehouse): Promise<Warehouse> {
     const persistenceModel = WarehouseMapper.toPersistence(data);
@@ -46,7 +46,7 @@ export class WarehouseRelationalRepository implements WarehouseRepository {
       take: paginationOptions.limit,
       where: where,
       relations: {
-        manager: true
+        manager: true,
       },
       select: {
         manager: {

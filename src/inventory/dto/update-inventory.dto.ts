@@ -44,12 +44,4 @@ export class UpdateInventoryDto extends PartialType(CreateInventoryDto) {
   })
   @IsOptional()
   notes?: string | null;
-
-  @ApiPropertyOptional({
-    type: Number,
-    example: 1,
-    description: 'ID of the user who performed this inventory action',
-  })
-  @IsOptional()
-  userId?: number | null;
 }

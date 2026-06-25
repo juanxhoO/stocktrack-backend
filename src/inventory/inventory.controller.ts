@@ -38,7 +38,7 @@ import { infinityPagination } from '../utils/infinity-pagination';
 @UseGuards(AuthGuard('jwt'), RolesGuard)
 @ApiTags('Inventory')
 @Controller({
-  path: 'inventory',
+  path: 'inventories',
   version: '1',
 })
 export class InventoryController {

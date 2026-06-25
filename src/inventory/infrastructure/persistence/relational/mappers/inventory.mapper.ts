@@ -5,7 +5,7 @@ export class InventoryMapper {
   static toDomain(raw: InventoryEntity): Inventory {
     const domainEntity = new Inventory();
     domainEntity.id = raw.id;
-    domainEntity.productId = raw.productId;
+    domainEntity.product = raw.product;
     domainEntity.quantity = raw.quantity;
     domainEntity.createdAt = raw.createdAt;
     domainEntity.updatedAt = raw.updatedAt;
@@ -18,7 +18,7 @@ export class InventoryMapper {
     if (domainEntity.id && typeof domainEntity.id === 'number') {
       persistenceEntity.id = domainEntity.id;
     }
-    persistenceEntity.productId = domainEntity.productId;
+    //persistenceEntity.product = domainEntity.product;
     persistenceEntity.quantity = domainEntity.quantity;
     persistenceEntity.createdAt = domainEntity.createdAt;
     persistenceEntity.updatedAt = domainEntity.updatedAt;
