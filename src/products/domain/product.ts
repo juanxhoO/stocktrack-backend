@@ -1,7 +1,7 @@
 import { FileType } from '../../files/domain/file';
 import { ApiProperty } from '@nestjs/swagger';
 
-const idType = Number;
+const idType = String;
 
 export class Product {
   @ApiProperty({

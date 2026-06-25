@@ -15,7 +15,7 @@ import { ProductEntity } from '../../../../../products/infrastructure/persistenc
 })
 export class InventoryEntity extends EntityRelationalHelper {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number | string;
 
   @Column({ type: String, nullable: false })
   name: string | null;

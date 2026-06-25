@@ -53,7 +53,6 @@ export class InventoryController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createInventoryDto: CreateInventoryDto): Promise<Inventory> {
-    console.log('createInventoryDto', createInventoryDto);
     return this.inventoryService.create(createInventoryDto);
   }
 

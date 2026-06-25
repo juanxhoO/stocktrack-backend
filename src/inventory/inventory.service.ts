@@ -23,8 +23,10 @@ export class InventoryService {
     // <creating-property />
 
     const product = await this.productsService.findById(
-      createInventoryDto.productId,
+      createInventoryDto.product,
     );
+
+    console.log('product', product);
     if (!product) {
       throw new BadRequestException('Product does not exist');
     }
