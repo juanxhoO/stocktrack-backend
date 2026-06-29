@@ -3,7 +3,7 @@ import {
   Module,
 } from '@nestjs/common';
 
-import { CategoriesController } from './products.controller';
+import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
 import { RelationalProductPersistenceModule } from './infrastructure/persistence/relational/relational-persistence.module';
 import { FilesModule } from '../files/files.module';
@@ -16,7 +16,7 @@ const infrastructurePersistenceModule = RelationalProductPersistenceModule;
     infrastructurePersistenceModule,
     FilesModule,
   ],
-  controllers: [CategoriesController],
+  controllers: [ProductsController],
   providers: [ProductsService],
   exports: [ProductsService, infrastructurePersistenceModule],
 })

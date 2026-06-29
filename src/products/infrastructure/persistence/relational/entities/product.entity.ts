@@ -26,7 +26,17 @@ export class ProductEntity extends EntityRelationalHelper {
   @Column({ type: String, nullable: true })
   description: string | null;
 
-  @Column({ type: Number })
+  @Column({ type: String, nullable: true })
+  brand: string | null;
+
+  @Column({ type: String, nullable: true })
+  sku: string | null;
+
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+  })
   price: number;
 
   @OneToMany(() => InventoryEntity, (inventory) => inventory.product)

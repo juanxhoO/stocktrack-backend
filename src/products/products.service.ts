@@ -46,6 +46,8 @@ export class ProductsService {
     return this.productsRepository.create({
       // Do not remove comment below.
       // <creating-property-payload />
+      brand: createProductDto.brand,
+      sku: createProductDto.sku,
       name: createProductDto.name,
       price: createProductDto.price,
       photo: photo,

@@ -8,7 +8,10 @@ export class ProductMapper {
     const domainEntity = new Product();
     domainEntity.id = raw.id;
     domainEntity.name = raw.name;
+    domainEntity.brand = raw.brand;
+    domainEntity.sku = raw.sku;
     domainEntity.description = raw.description;
+    domainEntity.price = raw.price;
     if (raw.photo) {
       domainEntity.photo = FileMapper.toDomain(raw.photo);
     }
@@ -36,6 +39,9 @@ export class ProductMapper {
     persistenceEntity.name = domainEntity.name;
     persistenceEntity.description = domainEntity.description;
     persistenceEntity.photo = photo;
+    persistenceEntity.brand = domainEntity.brand;
+    persistenceEntity.sku = domainEntity.sku;
+    persistenceEntity.price = domainEntity.price;
     persistenceEntity.createdAt = domainEntity.createdAt;
     persistenceEntity.updatedAt = domainEntity.updatedAt;
     persistenceEntity.deletedAt = domainEntity.deletedAt;

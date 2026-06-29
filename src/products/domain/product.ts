@@ -1,3 +1,4 @@
+import { Category } from '../../categories/domain/category';
 import { FileType } from '../../files/domain/file';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -16,10 +17,27 @@ export class Product {
   name: string | null;
 
   @ApiProperty({
+    type: () => Category,
+  })
+  categories?: Category[];
+
+  @ApiProperty({
     type: Number,
     example: 10.99,
   })
   price: number;
+
+  @ApiProperty({
+    type: String,
+    example: 'Brand Name',
+  })
+  brand: string | null;
+
+  @ApiProperty({
+    type: String,
+    example: 'SKU',
+  })
+  sku: string | null;
 
   @ApiProperty({
     type: String,

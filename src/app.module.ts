@@ -23,6 +23,7 @@ import { SessionModule } from './session/session.module';
 import { MailerModule } from './mailer/mailer.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
 import { InventoryModule } from './inventory/inventory.module';
+import { ProductsModule } from './products/products.module';
 
 const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
   useClass: TypeOrmConfigService,
@@ -73,6 +74,7 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
     CategoriesModule,
     InventoryModule,
     FilesModule,
+    ProductsModule,
     AuthModule,
     AuthFacebookModule,
     SessionModule,
