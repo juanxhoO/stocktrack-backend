@@ -21,6 +21,20 @@ export class CreateProductDto {
   @IsNotEmpty()
   price: number;
 
+  @ApiProperty({ example: 'brand-name', type: String })
+  @Transform(lowerCaseTransformer)
+  @IsNotEmpty()
+  brand: string;
+
+  @ApiProperty({ example: 'SKU123', type: String })
+  @Transform(lowerCaseTransformer)
+  @IsNotEmpty()
+  sku: string;
+
+  @ApiProperty({ example: ['id1', 'id2'], type: [String] })
+  @IsOptional()
+  categories?: string[];
+
   @ApiPropertyOptional({ example: 'product-description', type: String })
   @IsOptional()
   description: string | null;

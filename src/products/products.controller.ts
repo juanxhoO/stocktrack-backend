@@ -39,12 +39,12 @@ import { infinityPagination } from '../utils/infinity-pagination';
 @ApiBearerAuth()
 @Roles(RoleEnum.admin)
 @UseGuards(AuthGuard('jwt'), RolesGuard)
-@ApiTags('Categories')
+@ApiTags('Products')
 @Controller({
-  path: 'categories',
+  path: 'products',
   version: '1',
 })
-export class CategoriesController {
+export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @ApiCreatedResponse({
