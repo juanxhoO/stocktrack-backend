@@ -27,11 +27,9 @@ export class CreateCategoryDto {
   @IsOptional()
   description: string | null;
 
-
   @ApiPropertyOptional({ type: () => FileDto })
   @IsOptional()
   photo?: FileDto | null;
-
 
   @ApiPropertyOptional({ type: StatusDto })
   @IsOptional()

@@ -22,7 +22,6 @@ export class Category {
   })
   description: string | null;
 
-
   @ApiProperty({
     type: String,
     example: 'category-slug',

@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToOne,
+  OneToMany,
 } from 'typeorm';
 import { RoleEntity } from '../../../../../roles/infrastructure/persistence/relational/entities/role.entity';
 import { StatusEntity } from '../../../../../statuses/infrastructure/persistence/relational/entities/status.entity';
@@ -16,6 +17,7 @@ import { FileEntity } from '../../../../../files/infrastructure/persistence/rela
 
 import { AuthProvidersEnum } from '../../../../../auth/auth-providers.enum';
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper';
+import { WarehouseEntity } from '../../../../../warehouses/infrastructure/persistence/relational/entities/warehouse.entity';
 
 @Entity({
   name: 'user',
@@ -46,6 +48,9 @@ export class UserEntity extends EntityRelationalHelper {
   @Index()
   @Column({ type: String, nullable: true })
   lastName: string | null;
+
+  @OneToMany(() => WarehouseEntity, (warehouse) => warehouse.manager)
+  warehouses: WarehouseEntity[];
 
   @OneToOne(() => FileEntity, {
     eager: true,

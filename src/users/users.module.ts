@@ -21,4 +21,4 @@ const infrastructurePersistenceModule = RelationalUserPersistenceModule;
   providers: [UsersService],
   exports: [UsersService, infrastructurePersistenceModule],
 })
-export class UsersModule { }
+export class UsersModule {}

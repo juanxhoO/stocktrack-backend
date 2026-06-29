@@ -21,6 +21,9 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { AllConfigType } from './config/config.type';
 import { SessionModule } from './session/session.module';
 import { MailerModule } from './mailer/mailer.module';
+import { WarehousesModule } from './warehouses/warehouses.module';
+import { InventoryModule } from './inventory/inventory.module';
+import { ProductsModule } from './products/products.module';
 
 const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
   useClass: TypeOrmConfigService,
@@ -69,13 +72,16 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
     }),
     UsersModule,
     CategoriesModule,
+    InventoryModule,
     FilesModule,
+    ProductsModule,
     AuthModule,
     AuthFacebookModule,
     SessionModule,
     MailModule,
     MailerModule,
     HomeModule,
+    WarehousesModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

@@ -21,7 +21,6 @@ export class CategoryMapper {
   }
 
   static toPersistence(domainEntity: Category): CategoryEntity {
-
     let photo: FileEntity | undefined | null = undefined;
 
     if (domainEntity.photo) {

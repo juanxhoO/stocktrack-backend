@@ -20,7 +20,7 @@ export class CategoriesService {
   constructor(
     private readonly categoriesRepository: CategoryRepository,
     private readonly filesService: FilesService,
-  ) { }
+  ) {}
 
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
     // Do not remove comment below.

@@ -7,7 +7,6 @@ import {
 } from 'class-validator';
 import { Transform, Type, plainToInstance } from 'class-transformer';
 import { Category } from '../domain/category';
-import { RoleDto } from '../../roles/dto/role.dto';
 
 export class FilterCategoryDto {
   @ApiPropertyOptional({ type: String })
@@ -52,7 +51,9 @@ export class QueryCategoryDto {
   @ApiPropertyOptional({ type: String })
   @IsOptional()
   @Transform(({ value }) => {
-    return value ? plainToInstance(SortCategoryDto, JSON.parse(value)) : undefined;
+    return value
+      ? plainToInstance(SortCategoryDto, JSON.parse(value))
+      : undefined;
   })
   @ValidateNested({ each: true })
   @Type(() => SortCategoryDto)
