@@ -33,7 +33,7 @@ export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {
     nullable: true,
   })
   @IsOptional()
-  parent?: number | null;
+  parent: number | null;
 
   @ApiPropertyOptional({
     type: () => [String],
