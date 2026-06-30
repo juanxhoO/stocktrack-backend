@@ -33,7 +33,6 @@ export class WarehouseMapper {
     }
 
     let manager: UserEntity | undefined | null = undefined;
-    console.log(domainEntity.manager);
     if (domainEntity.manager) {
       manager = new UserEntity();
       manager.id = domainEntity.manager.id as number;

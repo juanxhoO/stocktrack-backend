@@ -109,6 +109,9 @@ export class CategoriesRelationalRepository implements CategoryRepository {
   }
 
   async remove(id: Category['id']): Promise<void> {
+    if (id === null) {
+      throw new Error('Category id cannot be null');
+    }
     await this.categoriesRepository.softDelete(id);
   }
 }

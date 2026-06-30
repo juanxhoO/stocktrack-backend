@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToOne,
+  OneToMany,
 } from 'typeorm';
 import { StatusEntity } from '../../../../../statuses/infrastructure/persistence/relational/entities/status.entity';
 import { FileEntity } from '../../../../../files/infrastructure/persistence/relational/entities/file.entity';
@@ -39,6 +40,18 @@ export class CategoryEntity extends EntityRelationalHelper {
     eager: true,
   })
   status?: StatusEntity;
+
+  // Parent Category
+  @ManyToOne(() => CategoryEntity, (category) => category.children, {
+    nullable: true,
+    onDelete: 'SET NULL',
+  })
+  @JoinColumn({ name: 'parentId' })
+  parent?: CategoryEntity | null;
+
+  // Child Categories
+  @OneToMany(() => CategoryEntity, (category) => category.parent)
+  children?: CategoryEntity[];
 
   @CreateDateColumn()
   createdAt: Date;
