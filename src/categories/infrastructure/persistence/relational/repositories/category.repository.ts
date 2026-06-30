@@ -18,7 +18,7 @@ export class CategoriesRelationalRepository implements CategoryRepository {
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoriesRepository: Repository<CategoryEntity>,
-  ) {}
+  ) { }
 
   async create(data: Category): Promise<Category> {
     const persistenceModel = CategoryMapper.toPersistence(data);
@@ -46,6 +46,14 @@ export class CategoriesRelationalRepository implements CategoryRepository {
       skip: (paginationOptions.page - 1) * paginationOptions.limit,
       take: paginationOptions.limit,
       where: where,
+      relations: {
+        parent: true
+      },
+      select: {
+        parent: {
+          id: true,
+        },
+      },
       order: sortOptions?.reduce(
         (accumulator, sort) => ({
           ...accumulator,
@@ -60,6 +68,9 @@ export class CategoriesRelationalRepository implements CategoryRepository {
 
   async findById(id: Category['id']): Promise<NullableType<Category>> {
     const entity = await this.categoriesRepository.findOne({
+      relations: {
+        parent: true
+      },
       where: { id: Number(id) },
     });
 
@@ -96,6 +107,9 @@ export class CategoriesRelationalRepository implements CategoryRepository {
       throw new Error('Category not found');
     }
 
+    if (payload.parent) {
+      entity.parent = CategoryMapper.toPersistence(payload.parent);
+    }
     const updatedEntity = await this.categoriesRepository.save(
       this.categoriesRepository.create(
         CategoryMapper.toPersistence({

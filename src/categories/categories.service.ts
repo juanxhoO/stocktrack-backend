@@ -159,6 +159,12 @@ export class CategoriesService {
       slug = null;
     }
 
+    let parent: Category | null = null;
+    parent = await this.categoriesRepository.findById(updateCategoryDto.parent);
+    if (!parent) {
+      throw new BadRequestException('Parent Category does not exist');
+    }
+
     let photo: FileType | null | undefined = undefined;
 
     if (updateCategoryDto.photo?.id) {
@@ -202,6 +208,7 @@ export class CategoriesService {
       // Do not remove comment below.
       // <updating-property-payload />
       name: updateCategoryDto.name,
+      parent: parent,
       slug: slug,
       photo,
       status,
