@@ -2,7 +2,7 @@ import { PartialType, ApiPropertyOptional } from '@nestjs/swagger';
 import { CreateCategoryDto } from './create-category.dto';
 
 import { Transform, Type } from 'class-transformer';
-import { IsEmail, IsOptional, MinLength } from 'class-validator';
+import { IsOptional, MinLength } from 'class-validator';
 import { FileDto } from '../../files/dto/file.dto';
 import { RoleDto } from '../../roles/dto/role.dto';
 import { StatusDto } from '../../statuses/dto/status.dto';
@@ -12,25 +12,34 @@ export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {
   @ApiPropertyOptional({ example: 'test1@example.com', type: String })
   @Transform(lowerCaseTransformer)
   @IsOptional()
-  @IsEmail()
-  email?: string | null;
+  slug?: string | null;
 
   @ApiPropertyOptional()
   @IsOptional()
-  @MinLength(6)
-  password?: string;
-
-  provider?: string;
-
-  socialId?: string | null;
+  @MinLength(1)
+  description?: string;
 
   @ApiPropertyOptional({ example: 'John', type: String })
   @IsOptional()
-  firstName?: string | null;
+  name: string | null;
 
-  @ApiPropertyOptional({ example: 'Doe', type: String })
+  @ApiPropertyOptional({ type: StatusDto })
   @IsOptional()
-  lastName?: string | null;
+  @Type(() => StatusDto)
+  status?: StatusDto;
+
+  @ApiPropertyOptional({
+    type: Number,
+    nullable: true,
+  })
+  @IsOptional()
+  parent?: number | null;
+
+  @ApiPropertyOptional({
+    type: () => [String],
+    required: false,
+  })
+  children?: string[];
 
   @ApiPropertyOptional({ type: () => FileDto })
   @IsOptional()
@@ -40,9 +49,4 @@ export class UpdateCategoryDto extends PartialType(CreateCategoryDto) {
   @IsOptional()
   @Type(() => RoleDto)
   role?: RoleDto | null;
-
-  @ApiPropertyOptional({ type: () => StatusDto })
-  @IsOptional()
-  @Type(() => StatusDto)
-  status?: StatusDto;
 }

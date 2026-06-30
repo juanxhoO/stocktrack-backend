@@ -2,6 +2,7 @@ import {
   HttpStatus,
   Injectable,
   UnprocessableEntityException,
+  BadRequestException,
 } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { NullableType } from '../utils/types/nullable.type';
@@ -20,11 +21,19 @@ export class CategoriesService {
   constructor(
     private readonly categoriesRepository: CategoryRepository,
     private readonly filesService: FilesService,
-  ) {}
+  ) { }
 
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
     // Do not remove comment below.
     // <creating-property />
+
+    let parent: Category | null = null;
+    if (createCategoryDto.parent !== undefined && createCategoryDto.parent !== null) {
+      parent = await this.categoriesRepository.findById(createCategoryDto.parent);
+      if (!parent) {
+        throw new BadRequestException('Parent Category does not exist');
+      }
+    }
 
     let slug: string | null = null;
 
@@ -88,6 +97,7 @@ export class CategoriesService {
       name: createCategoryDto.name,
       description: createCategoryDto.description,
       slug: slug,
+      parent: parent,
       photo: photo,
       status: status,
     });

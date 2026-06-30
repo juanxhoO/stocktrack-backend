@@ -1,6 +1,6 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { FileType } from '../../files/domain/file';
 import { Status } from '../../statuses/domain/status';
-import { ApiProperty } from '@nestjs/swagger';
 
 const idType = Number;
 
@@ -8,7 +8,7 @@ export class Category {
   @ApiProperty({
     type: idType,
   })
-  id: number | string;
+  id: number | null;
 
   @ApiProperty({
     type: String,
@@ -37,6 +37,18 @@ export class Category {
     type: () => Status,
   })
   status?: Status;
+
+  @ApiProperty({
+    type: () => Category,
+    nullable: true,
+  })
+  parent: Category | null;
+
+  @ApiProperty({
+    type: () => [Category],
+    required: false,
+  })
+  children?: Category[];
 
   @ApiProperty()
   createdAt: Date;

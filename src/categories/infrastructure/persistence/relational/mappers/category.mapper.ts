@@ -9,9 +9,13 @@ export class CategoryMapper {
     const domainEntity = new Category();
     domainEntity.id = raw.id;
     domainEntity.name = raw.name;
+    domainEntity.slug = raw.slug;
     domainEntity.description = raw.description;
     if (raw.photo) {
       domainEntity.photo = FileMapper.toDomain(raw.photo);
+    }
+    if (raw.parent) {
+      domainEntity.parent = CategoryMapper.toDomain(raw.parent) || null;
     }
     domainEntity.status = raw.status;
     domainEntity.createdAt = raw.createdAt;
@@ -42,10 +46,20 @@ export class CategoryMapper {
     if (domainEntity.id && typeof domainEntity.id === 'number') {
       persistenceEntity.id = domainEntity.id;
     }
+
+    let parent: CategoryEntity | undefined | null = undefined;
+    if (domainEntity.parent) {
+      parent = new CategoryEntity();
+      parent.id = domainEntity.parent.id as number;
+    } else if (domainEntity.parent === null) {
+      parent = null;
+    }
     persistenceEntity.name = domainEntity.name;
+    persistenceEntity.slug = domainEntity.slug;
     persistenceEntity.description = domainEntity.description;
     persistenceEntity.photo = photo;
     persistenceEntity.status = status;
+    persistenceEntity.parent = parent;
     persistenceEntity.createdAt = domainEntity.createdAt;
     persistenceEntity.updatedAt = domainEntity.updatedAt;
     persistenceEntity.deletedAt = domainEntity.deletedAt;

@@ -23,6 +23,10 @@ export class CreateCategoryDto {
   @IsNotEmpty()
   name: string | null;
 
+  @ApiPropertyOptional({ example: 1, type: Number })
+  @IsOptional()
+  parent?: number | null;
+
   @ApiPropertyOptional({ example: 'John', type: String })
   @IsOptional()
   description: string | null;
