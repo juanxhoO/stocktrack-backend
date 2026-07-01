@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateSupplierDto {
   @ApiProperty({
@@ -7,6 +7,7 @@ export class CreateSupplierDto {
     example: 'Vendor',
     description: 'Supplier name',
   })
+  @IsString()
   name: string;
 
   @ApiProperty({
@@ -14,7 +15,8 @@ export class CreateSupplierDto {
     example: 'Vendor email',
     description: 'Supplier email',
   })
-  email: string | null;
+  @IsEmail()
+  email: string;
 
   @ApiProperty({
     type: String,
@@ -28,51 +30,60 @@ export class CreateSupplierDto {
     example: 'Vendor Address',
     description: 'Supplier address',
   })
-  address: string | null;
+  @IsString()
+  @IsOptional()
+  address: string;
 
   @ApiProperty({
     type: String,
     example: 'Vendor Phone',
   })
-  phone: string | null;
+  @IsString()
+  phone: string;
 
   @ApiProperty({
     type: String,
     example: 'Vendor Country',
   })
-  country: string | null;
+  @IsString()
+  country: string;
 
   @ApiProperty({
     type: String,
     example: 'Vendor Tax ID',
     description: 'Supplier tax ID',
   })
-  taxId: string | null;
+  @IsString()
+  taxId: string;
 
   @ApiProperty({
     type: Boolean,
     example: true,
   })
+  @IsOptional()
   isActive: boolean;
 
   @ApiProperty({
     type: String,
     example: 'Vendor State',
   })
-  state: string | null;
+  @IsString()
+
+  state: string;
 
   @ApiProperty({
     type: String,
     example: 'Vendor City',
   })
-  city: string | null;
+  @IsString()
+  city: string;
 
   @ApiProperty({
     type: String,
     example: 'Vendor zipcode',
   })
   @IsString()
-  zipcode: string | null;
+  zipcode: string;
 
   @ApiProperty({
     type: String,
@@ -81,5 +92,5 @@ export class CreateSupplierDto {
   })
   @IsString()
   @IsOptional()
-  observations?: string | null;
+  observations: string;
 }

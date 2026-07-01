@@ -10,6 +10,7 @@ import {
   HttpCode,
   SerializeOptions,
   Patch,
+  Delete,
 } from '@nestjs/common';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
 import {
@@ -44,7 +45,7 @@ import { UpdateSupplierDto } from './dto/update-supplier.dto';
   version: '1',
 })
 export class SuppliersController {
-  constructor(private readonly supplierService: SuppliersService) {}
+  constructor(private readonly supplierService: SuppliersService) { }
 
   @ApiCreatedResponse({
     type: Supplier,
@@ -123,5 +124,22 @@ export class SuppliersController {
     @Body() updateSupplierDto: UpdateSupplierDto,
   ): Promise<Supplier | null> {
     return this.supplierService.update(id, updateSupplierDto);
+  }
+
+  @ApiOkResponse({
+    type: Supplier,
+  })
+  @SerializeOptions({
+    groups: ['admin'],
+  })
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+  })
+  remove(@Param('id') id: Supplier['id']): Promise<void> {
+    return this.supplierService.remove(id);
   }
 }
