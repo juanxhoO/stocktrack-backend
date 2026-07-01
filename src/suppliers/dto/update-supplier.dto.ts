@@ -81,5 +81,6 @@ export class UpdateSupplierDto extends PartialType(CreateSupplierDto) {
     example: 'Vendor Currency',
   })
   @IsOptional()
-  observations?: string | null;
+  @IsString()
+  observations?: string;
 }

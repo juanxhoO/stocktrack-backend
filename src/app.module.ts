@@ -24,6 +24,7 @@ import { MailerModule } from './mailer/mailer.module';
 import { WarehousesModule } from './warehouses/warehouses.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { ProductsModule } from './products/products.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
 
 const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
   useClass: TypeOrmConfigService,
@@ -76,6 +77,7 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
     FilesModule,
     ProductsModule,
     AuthModule,
+    SuppliersModule,
     AuthFacebookModule,
     SessionModule,
     MailModule,
@@ -84,4 +86,4 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
     WarehousesModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
