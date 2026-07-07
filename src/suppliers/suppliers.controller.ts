@@ -45,7 +45,7 @@ import { UpdateSupplierDto } from './dto/update-supplier.dto';
   version: '1',
 })
 export class SuppliersController {
-  constructor(private readonly supplierService: SuppliersService) { }
+  constructor(private readonly supplierService: SuppliersService) {}
 
   @ApiCreatedResponse({
     type: Supplier,

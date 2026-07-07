@@ -45,7 +45,7 @@ import { infinityPagination } from '../utils/infinity-pagination';
   version: '1',
 })
 export class CategoriesController {
-  constructor(private readonly categoriesService: CategoriesService) { }
+  constructor(private readonly categoriesService: CategoriesService) {}
 
   @ApiCreatedResponse({
     type: Category,

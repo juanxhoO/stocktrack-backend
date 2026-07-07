@@ -21,15 +21,20 @@ export class CategoriesService {
   constructor(
     private readonly categoriesRepository: CategoryRepository,
     private readonly filesService: FilesService,
-  ) { }
+  ) {}
 
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
     // Do not remove comment below.
     // <creating-property />
 
     let parent: Category | null = null;
-    if (createCategoryDto.parent !== undefined && createCategoryDto.parent !== null) {
-      parent = await this.categoriesRepository.findById(createCategoryDto.parent);
+    if (
+      createCategoryDto.parent !== undefined &&
+      createCategoryDto.parent !== null
+    ) {
+      parent = await this.categoriesRepository.findById(
+        createCategoryDto.parent,
+      );
       if (!parent) {
         throw new BadRequestException('Parent Category does not exist');
       }

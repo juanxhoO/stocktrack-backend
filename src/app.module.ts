@@ -86,4 +86,4 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
     WarehousesModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}

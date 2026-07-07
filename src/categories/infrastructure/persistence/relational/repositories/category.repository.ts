@@ -18,7 +18,7 @@ export class CategoriesRelationalRepository implements CategoryRepository {
   constructor(
     @InjectRepository(CategoryEntity)
     private readonly categoriesRepository: Repository<CategoryEntity>,
-  ) { }
+  ) {}
 
   async create(data: Category): Promise<Category> {
     const persistenceModel = CategoryMapper.toPersistence(data);
@@ -47,7 +47,7 @@ export class CategoriesRelationalRepository implements CategoryRepository {
       take: paginationOptions.limit,
       where: where,
       relations: {
-        parent: true
+        parent: true,
       },
       select: {
         parent: {
@@ -69,7 +69,7 @@ export class CategoriesRelationalRepository implements CategoryRepository {
   async findById(id: Category['id']): Promise<NullableType<Category>> {
     const entity = await this.categoriesRepository.findOne({
       relations: {
-        parent: true
+        parent: true,
       },
       where: { id: Number(id) },
     });

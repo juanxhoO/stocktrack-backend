@@ -45,7 +45,7 @@ import { infinityPagination } from '../utils/infinity-pagination';
   version: '1',
 })
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @ApiCreatedResponse({
     type: User,
@@ -56,7 +56,7 @@ export class UsersController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createProfileDto: CreateUserDto): Promise<User> {
-    console.log(createProfileDto)
+    console.log(createProfileDto);
     return this.usersService.create(createProfileDto);
   }
 
