@@ -48,6 +48,8 @@ export class CategoriesRelationalRepository implements CategoryRepository {
       where: where,
       relations: {
         parent: true,
+        status: true,
+        photo: true,
       },
       select: {
         parent: {
@@ -70,6 +72,8 @@ export class CategoriesRelationalRepository implements CategoryRepository {
     const entity = await this.categoriesRepository.findOne({
       relations: {
         parent: true,
+        status: true,
+        photo: true,
       },
       where: { id: Number(id) },
     });
@@ -79,6 +83,11 @@ export class CategoriesRelationalRepository implements CategoryRepository {
 
   async findByIds(ids: Category['id'][]): Promise<Category[]> {
     const entities = await this.categoriesRepository.find({
+      relations: {
+        parent: true,
+        status: true,
+        photo: true,
+      },
       where: { id: In(ids) },
     });
 
@@ -89,6 +98,11 @@ export class CategoriesRelationalRepository implements CategoryRepository {
     if (!slug) return null;
 
     const entity = await this.categoriesRepository.findOne({
+      relations: {
+        parent: true,
+        status: true,
+        photo: true,
+      },
       where: { slug },
     });
 
@@ -100,6 +114,11 @@ export class CategoriesRelationalRepository implements CategoryRepository {
     payload: Partial<Category>,
   ): Promise<Category> {
     const entity = await this.categoriesRepository.findOne({
+      relations: {
+        parent: true,
+        status: true,
+        photo: true,
+      },
       where: { id: Number(id) },
     });
 
